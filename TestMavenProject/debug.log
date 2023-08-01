@@ -1,0 +1,25 @@
+[0427/134936.747:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[0810/133606.236:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0810/133606.236:ERROR:exception_snapshot_win.cc(98)] thread ID 7008 not found in process
+[0810/133606.236:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)
+[0810/133729.250:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[0810/133729.252:ERROR:exception_snapshot_win.cc(98)] thread ID 6980 not found in process
+[0810/133729.252:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)
+[1013/181136.402:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[1026/160937.136:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[1026/200439.687:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[1028/141011.531:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[1028/180514.069:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[1105/213408.666:ERROR:file_io_win.cc(161)] CreateFile C:\Users\NOMAN~1.ALA\AppData\Local\Temp\cdt-user-data-dir9032361756952620949\Crashpad\settings.dat: The system cannot find the file specified. (0x2)
+[1105/221900.874:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[1106/124717.318:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[1109/144229.541:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[1109/200148.997:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[1111/150539.793:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[1111/190042.287:ERROR:prune_crash_reports.cc(34)] PruneCrashReportDatabase: Failed to get pending reports
+[1211/170307.347:ERROR:process_info.cc(329)] VirtualQueryEx: Access is denied. (0x5)
+[1211/170307.403:ERROR:process_info.cc(556)] ReadMemoryInfo failed
+[1211/170307.404:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)
+[0527/183404.028:ERROR:file_io.cc(89)] ReadExactly: expected 36, observed 0
+[0614/133000.930:ERROR:file_io_win.cc(161)] CreateFile C:\Users\NOMAN~1.ALA\AppData\Local\Temp\cdt-user-data-dir2284580931211844531\Crashpad\settings.dat: The system cannot find the file specified. (0x2)
+[0614/133141.934:ERROR:file_io_win.cc(161)] CreateFile C:\Users\NOMAN~1.ALA\AppData\Local\Temp\cdt-user-data-dir2207863762500601504\Crashpad\settings.dat: The system cannot find the file specified. (0x2)
