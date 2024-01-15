@@ -17,6 +17,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
@@ -87,7 +88,12 @@ public class DynamicFlowWithTextComparison {
 			 * ijic use case
 			 */
 //			String url = "https://ijic.org/issue/archive";
-			String url = "https://ijic.org/165/volume/23/issue/1";
+//			String url = "https://ijic.org/165/volume/23/issue/1";
+
+			/**
+			 * pmejournal use case
+			 */
+			String url = "https://pmejournal.org/66/volume/12/issue/1";
 
 			List<OnClickDetails> tags = loadData();
 
@@ -286,9 +292,16 @@ public class DynamicFlowWithTextComparison {
 					}
 				} else if (tags.get(level).getOnClickResult().equalsIgnoreCase(PAGE_NAVIGATION)) {
 					jsExecutor.executeScript("arguments[0].click();", element);
-//					element.click();
-					wait.until(ExpectedConditions
-							.visibilityOfElementLocated(By.cssSelector(tags.get(level + 1).getOnClickTag())));
+					
+					try {
+						wait.until(ExpectedConditions
+								.visibilityOfElementLocated(By.cssSelector(tags.get(level + 1).getOnClickTag())));
+					} catch (TimeoutException ex) {
+						element.click();
+						
+						wait.until(ExpectedConditions
+								.visibilityOfElementLocated(By.cssSelector(tags.get(level + 1).getOnClickTag())));
+					}
 
 					List<WebElement> subElements = tagsIdentifier(webDriver, wait, tags.get(level + 1).getTextTag(),
 							tags.get(level + 1).getOnClickTag(), tags.get(level + 1).getKeyWords(),
@@ -416,10 +429,19 @@ public class DynamicFlowWithTextComparison {
 //				PAGE_NAVIGATION, 1, null, null, null, null));
 //		listOfDetails.add(new OnClickDetails("div > main > section > ul > li:nth-child(1) > a", OPEN_IN_NEW_TAB, 0,
 //				null, null, null, null));
+//		listOfDetails.add(new OnClickDetails(
+//				"ul > li:nth-child(1) > ul > li:nth-child(1) > div > ul > li > button",
+//				PAGE_NAVIGATION, 1, null, null, null, null));
+//		listOfDetails.add(new OnClickDetails("body > div > div> div:nth-child(1) > div", ON_CLICK_DOWNLOAD, 2, null,
+//				null, null, null));
+
+		/*
+		 * pmejournal use case
+		 */
 		listOfDetails.add(new OnClickDetails(
-				"ul > li:nth-child(1) > ul > li:nth-child(1) > div > ul > li > button",
+				"#__next > div > div > div > main > section > div.jnl-hltamm.e1l8uzam3 > ul > li:nth-child(1) > ul > li:nth-child(1) > div.jnl-9wkv53.ejlai1v0 > ul > li > button",
 				PAGE_NAVIGATION, 1, null, null, null, null));
-		listOfDetails.add(new OnClickDetails("body > div > div> div:nth-child(1) > div", ON_CLICK_DOWNLOAD, 2, null,
+		listOfDetails.add(new OnClickDetails("body > div > div > div:nth-child(1) > a", ON_CLICK_DOWNLOAD, 2, null,
 				null, null, null));
 
 		return listOfDetails;

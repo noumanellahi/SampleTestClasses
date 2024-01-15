@@ -36,8 +36,10 @@ public class CalenderTests {
 //			String url = "https://www.in.gov.br/leiturajornal?data=11-12-2021&secao=do1";
 
 //			String url = "https://patent.public.lu/fo-eregister-view/search";
-			
-			String url = "https://teollisoikeuslehdet.prh.fi/en/trademarkgazette";
+
+//			String url = "https://teollisoikeuslehdet.prh.fi/en/trademarkgazette";
+
+			String url = "https://ipsearch.saip.gov.sa/wopublish-search/public/patents?1&lang=en#";
 
 //			String advanceSearch = "#accordionDiv > div > div.panel-header.accordion-header > div.panel-tool > a.accordion-collapse.accordion-expand";
 
@@ -93,8 +95,25 @@ public class CalenderTests {
 
 			webDriver.get(url);
 
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#startDate")))
-					.sendKeys("2000-01-01");
+			WebElement advanceSearch = wait.until(ExpectedConditions.presenceOfElementLocated(
+					By.cssSelector("body > div.wrapper > div:nth-child(1) > ul  > li:nth-child(2) > a")));
+
+			advanceSearch.click();
+
+			WebElement calander = wait.until(ExpectedConditions.presenceOfElementLocated(
+					By.cssSelector("#advancedInputWrapper > div:nth-child(8) > div > div > div:nth-child(2 ) > input:nth-child(1)")));
+
+			calander.sendKeys("2023.10.16 TO 2023.11.21");
+			
+			WebElement apply = wait.until(ExpectedConditions.presenceOfElementLocated(
+					By.cssSelector("body > div:nth-child(24) > div.ui-helper-clearfix > div > button.ui-priority-primary")));
+
+			apply.click();
+			
+			WebElement search = wait.until(ExpectedConditions.presenceOfElementLocated(
+					By.cssSelector("#advanceSearchButton")));
+
+			search.click();
 
 //			wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(
 //					"#searchCriteriaForm > div.table-control.removeLeftPadding > div:nth-child(1) > div:nth-child(7) > div.table-control > div:nth-child(2) > div > div.col-md-3.col-sm-2.col-xs-2.removeLeftPadding.removeRightPadding > input[type=hidden]:nth-child(4)")))

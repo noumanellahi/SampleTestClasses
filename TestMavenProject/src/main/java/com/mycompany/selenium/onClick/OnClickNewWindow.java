@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -17,15 +18,17 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 public class OnClickNewWindow {
 	public static void main(String[] args) {
 
-		String url = "https://law.go.kr/LSW/lsAstSc.do?tabMenuId=tab6#cptOfiAll";
+//		String url = "https://law.go.kr/LSW/lsAstSc.do?tabMenuId=tab6#cptOfiAll";
+		String url = "https://jrct.niph.go.jp/search?page=1";
 
-		String chromeDriverPath = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe";
-		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		WebDriverManager.chromedriver().setup();
 
-		String downloadFilepath = "C:\\Users\\Noman.Alahi\\Desktop\\chrome_download_test";
+		String downloadFilepath  = "C:\\Users\\Noman.Alahi\\Desktop\\chrome_download_test";
 
 		HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
 		chromePrefs.put("profile.default_content_settings.popups", 0);
@@ -50,23 +53,30 @@ public class OnClickNewWindow {
 
 		options.merge(capabilities);
 		WebDriver webDriver = new ChromeDriver(options);
-		WebDriverWait wait = new WebDriverWait(webDriver, 20);
+		WebDriverWait wait = new WebDriverWait(webDriver, 50);
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) webDriver;
 		Actions actions = new Actions(webDriver);
+		String tagsInclude = "table > tbody > tr > td.text-end";
+
 		try {
 			webDriver.get(url);
 			System.out.println("First " + webDriver.getWindowHandles().size());
-			List<WebElement> clickThis = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
-					By.cssSelector("#resultTable > tbody > tr > td.ctn1 > a")));
+//			List<WebElement> clickThis = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
+//					By.cssSelector("#resultTable > tbody > tr > td.ctn1 > a")));
 
-			for (WebElement element : clickThis) {
+			WebElement mainElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
+					By.cssSelector(StringUtils.isNotBlank(tagsInclude) ? tagsInclude : "html")));
+
+			List<WebElement> elementsToClick = mainElement.findElements(By.cssSelector("a"));
+
+			for (WebElement element : elementsToClick) {
 				actions.keyDown(Keys.LEFT_CONTROL).click(element).build().perform();
 				System.out.println("Second " + webDriver.getWindowHandles().size());
 
 				if (webDriver.getWindowHandles().size() > 1) {
 					webDriver.switchTo().window((new ArrayList<String>(webDriver.getWindowHandles()).get(1)));
-					WebElement data = wait
-							.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#conTop > h2")));
+					WebElement data = wait.until(ExpectedConditions
+							.visibilityOfElementLocated(By.cssSelector("body > div > div.jr-caption")));
 					System.out.println(data.getText());
 					webDriver.close();
 					webDriver.switchTo().window((new ArrayList<String>(webDriver.getWindowHandles()).get(0)));
@@ -77,9 +87,9 @@ public class OnClickNewWindow {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			webDriver.close();
-			webDriver.quit();
-			webDriver = null;
+//			webDriver.close();
+//			webDriver.quit();
+//			webDriver = null;
 		}
 	}
 }

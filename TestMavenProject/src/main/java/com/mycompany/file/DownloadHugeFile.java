@@ -11,15 +11,17 @@ import java.util.Date;
 
 public class DownloadHugeFile {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		try {
 			System.out.println("START TIME : " + new Date());
-			URL webURL = new URL("https://www.sample-videos.com/zip/50mb.zip");
+			URL webURL = new URL("https://bulkdata.uspto.gov/data/patent/application/yellowbook/2023/app_yb2_20230824.tar");
 			HttpURLConnection httpURLConnection = (HttpURLConnection) webURL.openConnection();
-			long fileSize = Long.parseLong(httpURLConnection.getHeaderField("Content-Length"));
-			System.out.println(fileSize);
+			httpURLConnection.setConnectTimeout(20000);
+			httpURLConnection.setReadTimeout(20000);
+//			long fileSize = Long.parseLong(httpURLConnection.getHeaderField("Content-Length"));
+//			System.out.println(fileSize);
 
-			String filename = "C:\\Users\\NomanAlahi\\Desktop\\Test_multi_part_3\\test_org.zip";
+			String filename = "C:\\Users\\NomanAlahi\\Desktop\\New folder\\test_org.tar";
 
 			System.out.println("START WRITING FILE STREAM ON FILE : " + filename);
 
@@ -37,6 +39,7 @@ public class DownloadHugeFile {
 			System.out.println("END WRITING FILE STREAM." + filename);
 			System.out.println("END TIME : " + new Date());
 		} catch (Exception ex) {
+			System.out.println("END TIME : " + new Date());
 			ex.printStackTrace();
 		}
 

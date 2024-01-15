@@ -22,10 +22,10 @@ public class JsPrompt {
 
 		String url = "https://www.gazette.jpo.go.jp/scciidl020?hyouziFlag=2";
 
-//		String chromeDriverPath = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe";
-//		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+		String chromeDriverPath = "C:\\Users\\NomanAlahi\\.m2\\repository\\webdriver\\chromedriver\\win32\\108.0.5359.71\\chromedriver.exe";
+		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 
-		WebDriverManager.chromedriver().setup();
+//		WebDriverManager.chromedriver().setup();
 
 		String downloadFilepath = "C:\\Users\\NomanAlahi\\Desktop\\chrome_download_test";
 
@@ -74,9 +74,9 @@ public class JsPrompt {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			webDriver.close();
-			webDriver.quit();
-			webDriver = null;
+//			webDriver.close();
+//			webDriver.quit();
+//			webDriver = null;
 		}
 
 	}

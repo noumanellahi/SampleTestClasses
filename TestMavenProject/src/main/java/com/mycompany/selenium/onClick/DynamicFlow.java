@@ -217,9 +217,9 @@ public class DynamicFlow {
 			ex.printStackTrace();
 		} finally {
 			try {
-				webDriver.close();
-				webDriver.quit();
-				webDriver = null;
+//				webDriver.close();
+//				webDriver.quit();
+//				webDriver = null;
 			} catch (Exception ex) {
 				System.out.println("HERE WE ARE");
 				ex.printStackTrace();

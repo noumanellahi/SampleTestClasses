@@ -63,5 +63,20 @@ public class XmlPathFinder {
 			ex.printStackTrace();
 		}
 	}
+	
+	public static String createFileNameFromMultiplePathValues(NodeList namingConventionNodeList, int numberOfValues,
+			int iteration) {
+		String fileName = "";
+		for (int i = 0; i < numberOfValues; i++) {
+			Node node = namingConventionNodeList.item(iteration * numberOfValues + i);
+
+			fileName = fileName + node.getTextContent();
+
+			if (i < numberOfValues - 1) {
+				fileName = fileName + "_";
+			}
+		}
+		return fileName;
+	}
 
 }
